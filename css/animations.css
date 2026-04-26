@@ -1,0 +1,270 @@
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Typing Cursor Blink */
+@keyframes blink {
+  0%, 49%, 100% {
+    opacity: 1;
+  }
+  50%, 99% {
+    opacity: 0;
+  }
+}
+
+/* Draw Line (Timeline) */
+@keyframes drawLine {
+  from {
+    scaleY(0);
+  }
+  to {
+    scaleY(1);
+  }
+}
+
+/* Slide Up */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glow Pulse */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* ========================================
+   REVEAL ANIMATION CLASS
+   ======================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal.visible {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ========================================
+   SECTION ENTRANCE ANIMATIONS
+   ======================================== */
+
+/* About Section */
+#about .reveal:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+#about .reveal:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+#about .reveal:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+#about .reveal:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Timeline Section */
+#timeline .reveal {
+  animation-delay: 0.1s;
+}
+
+/* Projects Section */
+#projects .filter-buttons {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+#projects .filter-buttons.visible {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+#projects .projects-grid {
+  animation: fadeInUp 0.5s ease forwards 0.2s;
+  opacity: 0;
+}
+
+#projects .projects-grid.visible {
+  animation: fadeInUp 0.5s ease forwards 0.2s;
+}
+
+.project-card {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.project-card.visible {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@for $i from 0 to 4 {
+  .project-card:nth-child(#{$i + 1}) {
+    animation-delay: #{$i * 0.1}s;
+  }
+
+  .project-card:nth-child(#{$i + 1}).visible {
+    animation-delay: #{$i * 0.1}s;
+  }
+}
+
+/* Simpler CSS version for nth-child delays */
+.project-card:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.project-card:nth-child(1).visible {
+  animation-delay: 0s;
+}
+
+.project-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.project-card:nth-child(2).visible {
+  animation-delay: 0.1s;
+}
+
+.project-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.project-card:nth-child(3).visible {
+  animation-delay: 0.2s;
+}
+
+.project-card:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.project-card:nth-child(4).visible {
+  animation-delay: 0.3s;
+}
+
+.project-card:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.project-card:nth-child(5).visible {
+  animation-delay: 0.4s;
+}
+
+/* Contact Section */
+#contact .reveal {
+  animation-delay: 0.1s;
+}
+
+/* ========================================
+   HOVER & INTERACTIVE ANIMATIONS
+   ======================================== */
+
+/* Card Hover Effect */
+.card,
+.stat-card,
+.timeline-content,
+.project-card,
+.contact-link {
+  transition: all 0.3s ease;
+}
+
+/* Button Hover */
+.btn,
+.filter-btn,
+.project-btn,
+.modal-close {
+  transition: all 0.3s ease;
+}
+
+.btn:hover,
+.filter-btn:hover,
+.project-btn:hover,
+.modal-close:hover {
+  transform: translateY(-2px);
+}
+
+/* Link Hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+/* ========================================
+   MOBILE ANIMATIONS
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal.visible {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   LOADING ANIMATIONS
+   ======================================== */
+
+/* Skeleton Loading (if needed) */
+@keyframes skeleton-loading {
+  0% {
+    background-color: var(--bg-card);
+  }
+  50% {
+    background-color: var(--bg-secondary);
+  }
+  100% {
+    background-color: var(--bg-card);
+  }
+}
+
+.skeleton {
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: var(--radius-md);
+}
