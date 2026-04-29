@@ -37,10 +37,10 @@
 /* Draw Line (Timeline) */
 @keyframes drawLine {
   from {
-    scaleY(0);
+    transform: scaleY(0);
   }
   to {
-    scaleY(1);
+    transform: scaleY(1);
   }
 }
 
@@ -132,17 +132,7 @@
   animation: fadeInUp 0.5s ease forwards;
 }
 
-@for $i from 0 to 4 {
-  .project-card:nth-child(#{$i + 1}) {
-    animation-delay: #{$i * 0.1}s;
-  }
-
-  .project-card:nth-child(#{$i + 1}).visible {
-    animation-delay: #{$i * 0.1}s;
-  }
-}
-
-/* Simpler CSS version for nth-child delays */
+/* CSS version for nth-child delays */
 .project-card:nth-child(1) {
   animation-delay: 0s;
 }

@@ -2,40 +2,45 @@
    MAIN.JS - Navigation, Scroll, Typing
    ======================================== */
 
-// Typing Effect
-const roles = ['Salesforce Developer', 'AI Engineer'];
-let roleIndex = 0;
+// Typing Effect with Loop
+const fullText = 'AI Engineer 를 꿈꾸는 Salesforce Developer';
+const pausePoint = 'AI Engineer'.length;
 let charIndex = 0;
 let isDeleting = false;
 const typingSpeed = 100;
 const deletingSpeed = 50;
-const delayBetweenRoles = 2000;
+const pauseDuration = 800;
+const delayBeforeDelete = 2000;
 
 function typeRole() {
   const typingText = document.querySelector('.typing-text');
-  const currentRole = roles[roleIndex];
 
   if (!isDeleting) {
     // Typing
-    if (charIndex < currentRole.length) {
-      typingText.textContent += currentRole.charAt(charIndex);
+    if (charIndex < fullText.length) {
+      typingText.textContent += fullText.charAt(charIndex);
       charIndex++;
-      setTimeout(typeRole, typingSpeed);
+
+      // 첫 번째 부분 끝에서 잠시 멈춤
+      if (charIndex === pausePoint) {
+        setTimeout(typeRole, pauseDuration);
+      } else {
+        setTimeout(typeRole, typingSpeed);
+      }
     } else {
-      // Finished typing, wait before deleting
+      // 타이핑 완료, 삭제 전에 잠시 대기
       isDeleting = true;
-      setTimeout(typeRole, delayBetweenRoles);
+      setTimeout(typeRole, delayBeforeDelete);
     }
   } else {
     // Deleting
     if (charIndex > 0) {
-      typingText.textContent = currentRole.substring(0, charIndex - 1);
+      typingText.textContent = fullText.substring(0, charIndex - 1);
       charIndex--;
       setTimeout(typeRole, deletingSpeed);
     } else {
-      // Finished deleting, move to next role
+      // 삭제 완료, 다시 타이핑 시작
       isDeleting = false;
-      roleIndex = (roleIndex + 1) % roles.length;
       setTimeout(typeRole, 500);
     }
   }
